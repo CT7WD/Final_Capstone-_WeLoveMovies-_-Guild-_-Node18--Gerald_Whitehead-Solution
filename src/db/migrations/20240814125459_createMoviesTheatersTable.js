@@ -12,7 +12,7 @@ exports.up = function(knex) {
         .references("theater_id")
         .inTable("theaters");
     table.boolean("is_showing");
-  });
+  }).dependsOn("movies");
 };
 
 exports.down = function(knex) {
