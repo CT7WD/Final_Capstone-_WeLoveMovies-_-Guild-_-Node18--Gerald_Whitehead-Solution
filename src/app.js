@@ -14,7 +14,7 @@ const methodNotAllowed = require("./errors/methodNotAllowed");
 app.use(cors());
 app.use(express.json());
 
-app.use("/", (req, res, next) => {res.json({ data: "Welcome to WeLoveMovies!"})})
+app.get("/", (req, res, next) => {res.json({ data: "Welcome to WeLoveMovies!"})})
 app.use("/movies", moviesRouter);
 app.use("/reviews", reviewsRouter);
 app.use("/theaters", theatersRouter);
