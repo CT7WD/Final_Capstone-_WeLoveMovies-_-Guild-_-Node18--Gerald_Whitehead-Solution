@@ -1,5 +1,5 @@
 
-exports.up = function(knex) {
+/*exports.up = function(knex) {
     return knex.schema.createTable("reviews", (table) => {
       table.increments("review_id").primary();
       table.text("content");
@@ -20,4 +20,24 @@ exports.up = function(knex) {
   
   exports.down = function(knex) {
     return knex.schema.dropTable("reviews");
+  };*/
+
+  exports.up = function(knex) {
+    return knex.schema.hasTable('reviews').then(function(exists) {
+      if (!exists) {
+        return knex.schema.createTable('reviews', (table) => {
+          table.increments('review_id').primary();
+          table.text('content');
+          table.integer('score');
+          table.integer('critic_id').notNullable();
+          table.integer('movie_id').notNullable();
+          table.timestamps(true, true);
+        });
+      }
+    });
   };
+  
+  exports.down = function(knex) {
+    return knex.schema.dropTableIfExists('reviews');
+  };
+  

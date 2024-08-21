@@ -1,5 +1,5 @@
 
-exports.up = function(knex) {
+/*exports.up = function(knex) {
     return knex.schema.createTable("movies_theaters", (table) => {
       table.integer("movie_id").unsigned().notNullable();
       table.integer("theater_id").unsigned().notNullable();
@@ -17,4 +17,21 @@ exports.up = function(knex) {
   
   exports.down = function(knex) {
     return knex.schema.dropTable("movies_theaters");
+  };*/
+
+  exports.up = function(knex) {
+    return knex.schema.hasTable('movies_theaters').then(function(exists) {
+      if (!exists) {
+        return knex.schema.createTable('movies_theaters', (table) => {
+          table.integer('movie_id').notNullable();
+          table.integer('theater_id').notNullable();
+          table.boolean('is_showing');
+        });
+      }
+    });
   };
+  
+  exports.down = function(knex) {
+    return knex.schema.dropTableIfExists('movies_theaters');
+  };
+  

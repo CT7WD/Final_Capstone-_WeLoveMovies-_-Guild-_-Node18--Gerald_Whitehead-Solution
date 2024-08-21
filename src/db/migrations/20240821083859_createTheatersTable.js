@@ -1,6 +1,8 @@
 
 exports.up = function(knex) {
-    return knex.schema.createTable("theaters", (table) => {
+  return knex.schema.hasTable("theaters").then(function(exists){
+    if(!exists) {
+      return knex.schema.createTable("theaters", (table) => {
       table.increments("theater_id").primary();
       table.string("name");
       table.string("address_line_1");
@@ -10,6 +12,10 @@ exports.up = function(knex) {
       table.string("zip");
       table.timestamps(true, true);
     });
+    }
+
+  })
+    
   };
   
   exports.down = function(knex) {
