@@ -1,4 +1,4 @@
-/*exports.up = function(knex) {
+exports.up = function(knex) {
     return knex.schema.createTable("movies", (table) => {
       table.increments("movie_id").primary();
       table.string("title");
@@ -12,9 +12,9 @@
   
   exports.down = function(knex) {
     return knex.schema.dropTable("movies");
-  }*/
+  }
 
-    exports.up = function(knex) {
+    /*exports.up = function(knex) {
       return knex.schema.hasTable('movies').then(function(exists) {
         if (!exists) {
           return knex.schema.createTable('movies', (table) => {
@@ -28,7 +28,7 @@
           });
         }
       });
-    };
+    };*/
     
     exports.down = function(knex) {
       return knex.schema.dropTableIfExists('movies');

@@ -20,7 +20,7 @@ function reviewExists(req, res, next) {
     });
 }
 
-//The original review is stores in res.locals.review
+//The original review is stored in res.locals.review
 //The new data (score & content) are in req.body.data
 //Add the critic as its own proptery
 async function update(req, res, next) {
